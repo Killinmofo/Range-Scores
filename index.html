@@ -185,6 +185,76 @@ button.primary:hover:not(:disabled){background:#a1db6e;box-shadow:0 0 0 2px rgba
 .score-table-heading strong{color:#c6e9a8}
 button:focus-visible,input:focus-visible,select:focus-visible{outline-color:var(--accent)}
 @media print{.report-preview,#printReport{box-shadow:none!important;text-shadow:none!important}}
+
+/* V25.3: purpose-built dense class scoring grid, not the old responsive shooter cards */
+.score-grid-header{padding:16px 20px 12px}
+.score-grid-header .score-toolbar{justify-content:space-between;margin:11px 0 12px}
+.score-grid-header .score-nav{margin:0;min-width:270px}
+.score-nav-compact span{background:#2a3035;border:1px solid #414a50;padding:8px 13px;border-radius:6px;font-weight:850;white-space:nowrap}
+.class-score-stats{display:flex;align-items:stretch;gap:18px;border-top:1px solid #414950;padding:12px 0 0;flex-wrap:wrap}
+.class-score-stats>div:not(.class-auto-save){display:flex;align-items:baseline;gap:7px}
+.class-score-stats b{font-size:20px;color:#8ccf54;line-height:1}
+.class-score-stats span{font-size:12px;color:#b1bcc0}
+.class-auto-save{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:11px;color:#aab6b5}
+.live-save-dot{display:inline-block;width:7px;height:7px;background:#8ccf54;border-radius:50%}
+.score-grid-panel{padding:0;overflow:hidden}
+.score-grid-title{display:flex;justify-content:space-between;align-items:center;padding:13px 17px;gap:12px;background:#242a30;border-bottom:1px solid #454e53}
+.score-grid-title strong{display:block;font-size:16px;color:#f4f7f2}
+.score-grid-title small{display:block;font-size:11px;color:#b3bec2;margin-top:3px}
+.score-grid-title>span{color:#aabcbe;font-size:12px}
+.score-grid-scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-inline:contain}
+.score-grid-columns,.score-grid-row{display:grid;min-width:var(--score-min-width,790px);align-items:stretch}
+.score-grid-columns{background:#32383e;border-bottom:1px solid #525c62}
+.score-grid-columns>div{padding:12px 7px;text-align:center;color:#dce5dd;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;line-height:1.2;border-right:1px solid #454e54}
+.score-grid-columns>div:first-child{text-align:left;justify-content:flex-start;padding-left:15px}
+.score-grid-shooter-group{display:block;background:#1d2227;border:0;border-bottom:1px solid #3d464b;border-radius:0;box-shadow:none;margin:0;padding:0}
+.score-grid-shooter-group:nth-child(2n+1){background:#242a2f}
+.score-grid-shooter-group:last-child{border-bottom:0}
+.score-grid-row>div{min-width:0;border-right:1px solid #343d42;display:flex;align-items:center;justify-content:center;padding:9px 6px}
+.score-grid-row>div:last-child{border-right:0}
+.score-grid-row .grid-shooter{display:flex;align-items:flex-start;flex-direction:column;justify-content:center;padding-left:15px;gap:3px}
+.grid-shooter strong{font-size:13px;color:#f2f5f1;line-height:1.3}
+.grid-shooter small{font-size:10px;color:#8a969c;letter-spacing:.02em}
+.grid-metadata{font-size:13px;color:#d2dcda}
+.grid-input-cell{padding:7px 6px!important}
+.grid-score-input{height:45px;min-height:45px;width:100%;max-width:92px;border:1px solid #556265;border-radius:6px;background:#11161a;color:#f3f6f3;font-size:19px;text-align:center;font-weight:800;padding:5px}
+.grid-score-input:focus{border-color:#8ccf54;box-shadow:0 0 0 2px #8ccf5440}
+.grid-calc{display:flex;align-items:center;justify-content:center;background:#2b3338;border:1px solid #465357;border-radius:6px;min-height:45px;width:100%;color:#dbe6d9;font-size:16px;font-weight:800}
+.grid-hits strong{color:#dcecd2;font-size:16px}
+.grid-result,.grid-overall{display:flex;flex-direction:column;gap:4px}
+.grid-result small,.grid-overall small{font-size:10px;text-align:center;color:#abb9bb;line-height:1.2;overflow-wrap:anywhere}
+.grid-result .scorer-status{font-size:10px;padding:5px 6px}
+.grid-overall strong{font-size:16px;color:#f0f4f0}
+.grid-remedial-bar{background:#1b2025;display:flex;align-items:center;justify-content:flex-end;gap:12px;padding:5px 12px 7px;border-top:1px solid #333c40}
+.grid-remedial-bar span{font-size:10px;color:#a9b5b6}
+.grid-remedial-bar button{font-size:10px;min-height:29px;padding:5px 10px}
+.grid-remedial-bar button:disabled{opacity:.24}
+.grid-refire{background:#292b2a;border:0;border-top:1px solid #5d664c;border-radius:0;margin:0;width:100%;min-width:var(--score-min-width,790px)}
+.grid-refire summary{cursor:pointer;background:#31362e;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:7px 15px;color:#cce7ad;font-size:12px;font-weight:750}
+.grid-refire summary span:last-child{color:#c1c9c1;font-size:11px}
+.grid-refire[open] summary{border-bottom:1px solid #495645}
+.refire-grid-scroll{overflow:visible}
+.score-refire-row{background:#252c29}
+.score-refire-row .grid-shooter strong{color:#bfe4a6}
+.score-refire-row .grid-overall,.score-refire-row .grid-result{font-size:11px;color:#d1dfca}
+.score-grid-caption{font-size:11px;padding:9px 15px;background:#1a1f24;border-top:1px solid #353e44;color:#9faeb2}
+.score-grid-bottom .score-nav{max-width:510px;margin:0 auto}
+@media(min-width:900px){.score-grid-scroll{overflow-x:auto}.score-grid-header{padding:17px 23px 13px}}
+@media(max-width:700px){
+ .score-grid-header{padding:14px}
+ .score-grid-header .score-toolbar{display:grid;gap:11px}
+ .score-grid-header .score-table-choose{width:100%;max-width:none}
+ .score-grid-header .score-nav{min-width:0;width:100%;display:flex}
+ .class-score-stats{gap:10px;justify-content:space-between}
+ .class-auto-save{flex-basis:100%;justify-content:flex-end}
+ .score-grid-title{padding:11px 13px}
+ .score-grid-scroll{position:relative}
+ .score-grid-columns>div{padding:10px 5px;font-size:10px}
+ .score-grid-row>div{padding:7px 5px}
+ .grid-score-input{height:46px;min-height:46px}
+ .score-grid-caption{display:block}
+}
+
 </style>
 <style id="rangetrack-export-styles">
 #printReport{background:white;color:#161b20;padding:20px;font:12px Arial,sans-serif;overflow:auto}
@@ -593,46 +663,75 @@ function refreshScoringTable(){
   }
 }
 
+const refireOpenIds=new Set();
+function setScoringRefireOpen(id,isOpen){
+ if(isOpen)refireOpenIds.add(id);else refireOpenIds.delete(id);
+}
 function score(){
- const session=current(), tables=tableList();
- if(!session)return '<section class="panel">No active course.</section>';
- if(!session.shooters.length)return '<section class="panel"><h2>No shooters</h2><p>Add shooters on the Shooters tab to begin scoring.</p><button class="primary" onclick="tab(\'roster\')">Go to Shooters</button></section>';
+ const session=current(),tables=tableList();
+ if(!session)return '<section class="panel"><h2>No active course</h2></section>';
+ if(!session.shooters.length)return `<section class="panel"><h2>No shooters</h2><p>Add shooters before scoring.</p><button class="primary" onclick="tab('roster')">Go to Shooters</button></section>`;
  if(!tables.length)return '<section class="panel">No Firing Tables configured.</section>';
- scoreTableIndex=Math.max(0,Math.min(scoreTableIndex,tables.length-1));
+ scoreTableIndex=Math.min(Math.max(0,scoreTableIndex),tables.length-1);
  const t=tables[scoreTableIndex];
- const shooters=[...session.shooters].sort((a,b)=>(Number(a.lane)||999)-(Number(b.lane)||999)||String(a.name).localeCompare(String(b.name)));
- const complete=shooters.filter(p=>tableStatus(p,'initial',t)!=='Incomplete').length;
- const passing=shooters.filter(p=>['Qualified','Expert'].includes(effectiveTableStatus(p,t))).length;
- const nav=()=>'<div class="score-nav"><button onclick="changeScoringTable(-1)" '+(scoreTableIndex===0?'disabled':'')+'>← Previous</button><span>Table '+(scoreTableIndex+1)+' of '+tables.length+'</span><button class="primary" onclick="changeScoringTable(1)" '+(scoreTableIndex===tables.length-1?'disabled':'')+'>Next →</button></div>';
- const areaInput=(p,attempt,a)=>{
-  const rec=attemptRecord(p,attempt,t);
-  const v=areaValue(rec,t,a);
-  return a.mode==='sum'?'<strong class="scorer-computed" data-score-calc="'+safe(attempt+'|'+a.id)+'">'+(v===''?'—':v)+'</strong>':'<input type="number" inputmode="numeric" step="1" min="0" aria-label="'+safe(p.name+' '+a.name+' '+attempt)+'" placeholder="—" value="'+safe(rec[a.id]??'')+'" oninput="setAreaScore(\''+p.id+'\',\''+attempt+'\',\''+t.id+'\',\''+a.id+'\',this.value)">';
+ const shooters=[...session.shooters].sort((a,b)=>(Number(a.lane)||999)-(Number(b.lane)||999)||a.name.localeCompare(b.name));
+ const initials=shooters.filter(p=>tableStatus(p,'initial',t)!=='Incomplete').length;
+ const passed=shooters.filter(p=>['Qualified','Expert'].includes(effectiveTableStatus(p,t))).length;
+ const areaCount=t.areas.length;
+ const columnWidth=`grid-template-columns: minmax(152px,1.7fr) 55px 64px ${t.areas.map(()=>'minmax(78px,1fr)').join(' ')} 70px 112px 96px;`;
+ const minWidth=Math.max(790,550+areaCount*94);
+ const nav=()=>`<div class="score-nav score-nav-compact"><button type="button" onclick="changeScoringTable(-1)" ${scoreTableIndex===0?'disabled':''}>← Previous</button><span>${scoreTableIndex+1} / ${tables.length}</span><button type="button" class="primary" onclick="changeScoringTable(1)" ${scoreTableIndex===tables.length-1?'disabled':''}>Next →</button></div>`;
+ const badge=status=>`<span class="scorer-status ${status==='Fail'?'status-fail':status==='Incomplete'?'status-pending':'status-pass'}" data-initial-status>${safe(status)}</span>`;
+ const input=(p,attempt,a)=>{
+  const record=attemptRecord(p,attempt,t),value=areaValue(record,t,a);
+  if(a.mode==='sum')return `<output class="grid-calc" data-score-calc="${safe(attempt+'|'+a.id)}">${value===''?'—':value}</output>`;
+  return `<input class="grid-score-input" type="number" min="0" step="1" inputmode="numeric" aria-label="${safe(p.name+' '+a.name+' '+attempt)}" placeholder="—" value="${safe(record[a.id]??'')}" oninput="setAreaScore('${p.id}','${attempt}','${t.id}','${a.id}',this.value)">`;
  };
- const areaCell=(p,a)=>'<td class="score-area-cell" data-label="'+safe(a.name)+'"><label class="table-field"><span class="mobile-area-label">'+safe(a.name)+'</span>'+areaInput(p,'initial',a)+'</label></td>';
- const statusClass=v=>v==='Fail'?'status-fail':v==='Incomplete'?'status-pending':'status-pass';
- const statusBadge=(v,attr)=>'<span class="scorer-status '+statusClass(v)+'" '+attr+'>'+safe(v)+'</span>';
  const row=p=>{
   const initial=tableStatus(p,'initial',t);
   const final=effectiveTableStatus(p,t);
-  const score=effectivePaperTotal(p);
-  const active=remedialActive(p);
-  const failed=tables.some(x=>tableStatus(p,'initial',x)==='Fail');
+  const hits=scoreTotals(attemptRecord(p,'initial',t),t).qualifying;
+  const totalScore=effectivePaperTotal(p);
   const eligible=refireEligible(p,t);
-  const rec=attemptRecord(p,'initial',t),hits=scoreTotals(rec,t).qualifying;
-  const retryHits=scoreTotals(attemptRecord(p,'refire',t),t).qualifying;
-  const refire=eligible?'<details class="refire-details"><summary>Re-Fire <span data-refire-status>'+safe(tableStatus(p,'refire',t))+'</span></summary><div class="refire-field-grid">'+t.areas.map(a=>'<label class="scorer-field"><span>'+safe(a.name)+'</span>'+areaInput(p,'refire',a)+'</label>').join('')+'</div><div class="scorer-metrics">Qualifying hits: <strong data-refire-hits>'+(retryHits===''?'—':retryHits)+'</strong></div></details>':'';
-  const action=(!active?'<button class="remedial-button" data-initiate-remedial onclick="initiateRemedialRow(\''+p.id+'\')" '+(failed?'':'disabled')+'>Initiate Remedial</button>':'')+refire;
-  return '<tr class="scorer-card" data-shooter-id="'+safe(p.id)+'"><td class="score-person-cell" data-label="Shooter"><strong>'+safe(p.name)+'</strong><small>Lane '+safe(p.lane||'—')+' · Butt '+safe(p.buttNumber||'—')+'</small></td>'+
-   t.areas.map(a=>areaCell(p,a)).join('')+
-   '<td class="score-hits-cell" data-label="Qualifying"><strong data-initial-hits>'+(hits===''?'—':hits)+'</strong></td>'+
-   '<td class="score-result-cell" data-label="Table Result">'+statusBadge(initial,'data-initial-status')+'<div class="effective-result">Final: <strong data-effective-status>'+safe(final)+'</strong></div></td>'+
-   '<td class="score-result-cell score-course-cell" data-label="Course"><strong data-overall-status>'+safe(overallStatus(p))+'</strong><small>Score: <span data-overall-score>'+(score===''?'—':score)+'</span></small></td>'+
-   '<td class="score-actions-cell" data-label="Remedial">'+action+'</td></tr>';
+  const active=remedialActive(p);
+  const failAny=tables.some(x=>tableStatus(p,'initial',x)==='Fail');
+  const refireTotal=scoreTotals(attemptRecord(p,'refire',t),t).qualifying;
+  const rowMarkup=`<div class="score-grid-row" style="${columnWidth}" role="row">
+    <div class="grid-shooter" role="cell"><strong>${safe(p.name)}</strong><small>${safe(p.id.slice(-4).toUpperCase())}</small></div>
+    <div class="grid-cell grid-metadata" role="cell">${safe(p.lane||'—')}</div>
+    <div class="grid-cell grid-metadata" role="cell">${safe(p.buttNumber||'—')}</div>
+    ${t.areas.map(a=>`<div class="grid-cell grid-input-cell" role="cell">${input(p,'initial',a)}</div>`).join('')}
+    <div class="grid-cell grid-hits" role="cell"><strong data-initial-hits>${hits===''?'—':hits}</strong></div>
+    <div class="grid-cell grid-result" role="cell">${badge(initial)}<small data-effective-status>${safe(final)}</small></div>
+    <div class="grid-cell grid-overall" role="cell"><strong data-overall-score>${totalScore===''?'—':totalScore}</strong><small data-overall-status>${safe(overallStatus(p))}</small></div>
+   </div>`;
+  const remedial=eligible?`<details class="grid-refire" ${refireOpenIds.has(p.id)?'open':''} ontoggle="setScoringRefireOpen('${p.id}',this.open)">
+    <summary> <span>↳ Re-Fire · ${safe(p.name)}</span> <span data-refire-status>${safe(tableStatus(p,'refire',t))}</span> </summary>
+    <div class="refire-grid-scroll"><div class="score-grid-row score-refire-row" role="row" style="${columnWidth};min-width:${minWidth}px">
+     <div class="grid-shooter" role="cell"><strong>Re-Fire</strong><small>${safe(p.name)}</small></div>
+     <div class="grid-cell grid-metadata">${safe(p.lane||'—')}</div>
+     <div class="grid-cell grid-metadata">${safe(p.buttNumber||'—')}</div>
+     ${t.areas.map(a=>`<div class="grid-cell grid-input-cell">${input(p,'refire',a)}</div>`).join('')}
+     <div class="grid-cell grid-hits"><strong data-refire-hits>${refireTotal===''?'—':refireTotal}</strong></div>
+     <div class="grid-cell grid-result" data-refire-display>${safe(tableStatus(p,'refire',t))}</div>
+     <div class="grid-cell grid-overall">Remedial</div>
+    </div></div>
+   </details>`:(!active?`<div class="grid-remedial-bar"><span>${initial==='Fail'?'Failed initial score. Remedial requires manual initiation.':' '}</span><button type="button" data-initiate-remedial onclick="initiateRemedialRow('${p.id}')" ${failAny?'':'disabled'}>Initiate Remedial</button></div>`:'');
+  return `<div class="scorer-card score-grid-shooter-group" data-shooter-id="${safe(p.id)}" role="rowgroup">${rowMarkup}${remedial}</div>`;
  };
- return '<section class="panel score-section"><div class="score-head"><div><h2>Score</h2><p class="muted">'+safe(db.weapon)+' · '+safe(session.template?.name||db.course)+' · '+safe(session.date)+'</p></div><span class="tag">IN PROGRESS</span></div>'+
- '<div class="score-toolbar"><label class="score-table-choose">Firing Table<select onchange="scoreTableIndex=Number(this.value);render()">'+tables.map((v,i)=>'<option value="'+i+'" '+(i===scoreTableIndex?'selected':'')+'>'+safe(v.name)+'</option>').join('')+'</select></label><div class="score-summary"><span><strong>'+shooters.length+'</strong> Shooters</span><span><strong>'+complete+'</strong> Scored</span><span><strong>'+passing+'</strong> Passed</span></div></div>'+
- nav()+'</section><section class="panel score-table-panel"><div class="score-table-heading"><strong>'+safe(t.name)+'</strong><span>'+safe(t.rounds===''?'Rounds not configured':t.rounds+' rounds')+' · Auto-save</span></div><div class="score-table-scroll"><table class="range-scoring-table"><thead><tr><th>Shooter / Lane</th>'+t.areas.map(a=>'<th>'+safe(a.name)+'</th>').join('')+'<th>Hits</th><th>Table Result</th><th>Course</th><th>Remedial</th></tr></thead><tbody>'+shooters.map(row).join('')+'</tbody></table></div></section><section class="panel score-bottom">'+nav()+'<p class="muted">Initial scores remain unchanged when remedial is initiated. Open Re-Fire for a failed table to enter the additional scores.</p></section>';
+ return `<section class="panel score-section score-grid-header">
+ <div class="score-head"><div><h2>Score</h2><p class="muted">${safe(db.weapon)} · ${safe(session.template?.name||db.course)} · ${safe(session.date)}</p></div><span class="tag">CLASS SCORING</span></div>
+ <div class="score-toolbar"><label class="score-table-choose">Firing Table<select onchange="scoreTableIndex=Number(this.value);render()">${tables.map((x,i)=>`<option value="${i}" ${i===scoreTableIndex?'selected':''}>${safe(x.name)}</option>`).join('')}</select></label>${nav()}</div>
+ <div class="class-score-stats"><div><b>${shooters.length}</b><span>Shooters</span></div><div><b data-class-completed>${initials}</b><span>Scored</span></div><div><b data-class-passed>${passed}</b><span>Passing</span></div><div class="class-auto-save"><span class="live-save-dot"></span> Scores save automatically</div></div>
+ </section>
+ <section class="panel score-grid-panel"><div class="score-grid-title"><div><strong>${safe(t.name)}</strong><small>Firing Table ${scoreTableIndex+1} · ${safe(t.rounds===''?'Rounds not set':t.rounds+' rounds')}</small></div><span>${shooters.length} shooters</span></div>
+ <div class="score-grid-scroll" role="table" aria-label="${safe(t.name+' class scoring')}" style="--score-min-width:${minWidth}px">
+ <div class="score-grid-columns" style="${columnWidth}" role="row"><div role="columnheader">Shooter</div><div role="columnheader">Lane</div><div role="columnheader">Butt #</div>${t.areas.map(a=>`<div role="columnheader">${safe(a.name)}</div>`).join('')}<div role="columnheader">Hits</div><div role="columnheader">Table Status</div><div role="columnheader">Total / Overall</div></div>
+ ${shooters.map(row).join('')}
+ </div>
+ <div class="score-grid-caption">Scroll horizontally to see additional scoring areas on narrow screens. Re-Fire entries expand below each shooter.</div>
+ </section>
+ <section class="panel score-bottom score-grid-bottom">${nav()}<p class="muted">Only manually initiated remedial scores are entered in Re-Fire. Initial scores remain on record.</p></section>`;
 }
 
 // Compact operational summary; detailed scoring remains in stored shooter records.
