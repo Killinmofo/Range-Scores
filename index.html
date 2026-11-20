@@ -10,6 +10,32 @@ main{max-width:850px;padding:16px 12px}.panel{background:linear-gradient(135deg,
 button{background:#344538;color:#f0f5ea;border:1px solid #657d58;border-radius:10px;min-height:42px}button.primary,button.active{background:#789b48;color:#0b140d;border-color:#b1d578}button.danger{background:#8d3336;color:#fff;border-color:#bb6465}button.selected{outline:2px solid var(--accent)}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}input,select{background:#101a14;border:1px solid #71816d;color:#fff;min-height:43px}input::placeholder{color:#a6b4a3}.notice{background:#493c1c;color:#fff0c6}.dangerarea{border-color:#a66b6b}
 .dashboard-title{margin:0 0 15px;font-size:27px;letter-spacing:-.5px}.dashboard-card{width:100%;display:flex;align-items:center;text-align:left;gap:14px;min-height:98px;padding:16px 14px;background:linear-gradient(125deg,#253128,#121c16);border:1.5px solid #b0d46c;border-radius:15px;color:#f3f6ef;box-shadow:inset 0 1px 0 #ffffff12,0 4px 12px #0005}.dashboard-card+.dashboard-card{margin-top:12px}.dashboard-card .dash-icon{font-size:29px;color:var(--accent);min-width:48px;text-align:center;border-right:1px solid #839e68;padding-right:11px;line-height:1.2}.dashboard-card .dash-copy{flex:1}.dashboard-card strong{display:block;font-size:17px;margin-bottom:5px}.dashboard-card small{display:block;font-size:13px;color:#d2ddd0;font-weight:400;line-height:1.35}.dashboard-card .dash-chevron{color:var(--accent);font-size:28px}.dashboard-card:hover{background:#2b3a2c}.dashboard-section{margin:0 0 14px}.dashboard-section h2{font-size:17px;margin:0 0 10px}.dashboard-section .weapons button,.dashboard-section .courses button{min-height:50px}.dashboard-section .selected{background:#789b48;color:#0b140d}.dashboard-selection{border-left:3px solid var(--accent);padding-left:11px;margin-top:12px}.dashboard-selection .muted{margin:5px 0}.dashboard-action{width:100%;margin-top:10px}
 @media(max-width:390px){.brand-inner{gap:10px}.brand-text h1{font-size:28px}.brand-sub{font-size:9px;letter-spacing:.7px}.dashboard-card{min-height:90px}.dashboard-card strong{font-size:16px}}
+
+/* V24: class-wide scoring, one configurable Firing Table at a time. */
+.score-section .score-table-choose{display:block;max-width:460px;margin:12px 0}
+.score-table-choose select{display:block;width:100%;margin-top:6px}
+.score-nav{display:flex;align-items:center;gap:12px;justify-content:space-between;margin:12px 0}
+.score-nav button{flex:1;max-width:200px}.score-nav span{font-weight:700;text-align:center}
+.score-roster{display:grid;gap:12px;margin-bottom:14px}
+.scorer-card{border:1px solid #63745c;border-radius:13px;background:#1c2921;color:#f3f6ef;padding:13px}
+.scorer-person,.scorer-foot{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.scorer-person strong{font-size:17px}.scorer-meta{color:#c3d0bc;font-size:12px;margin-top:4px}
+.scorer-status{border-radius:8px;padding:6px 9px;font-size:12px;font-weight:800;white-space:nowrap}
+.status-pass{color:#bff0a8;background:#245139}.status-fail{color:#ffd5d5;background:#702b31}.status-pending{color:#f2e8b9;background:#57502b}
+.scorer-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(126px,1fr));gap:9px;margin-top:13px}
+.scorer-field{display:flex;flex-direction:column;gap:5px;font-size:12px;color:#cbd9c7;min-width:0}
+.scorer-field input{width:100%;font-size:20px;font-weight:650;padding:8px}
+.scorer-computed{border:1px solid #6c7e67;border-radius:8px;min-height:43px;display:flex;align-items:center;padding:9px;color:#fff;font-size:18px}
+.scorer-metrics{display:flex;flex-wrap:wrap;gap:8px 20px;margin:10px 0;font-size:12px;color:#c9d4c6}
+.scorer-metrics strong{color:#fff}
+.scorer-foot{border-top:1px solid #4d6149;padding-top:10px;margin-top:9px;font-size:12px;flex-wrap:wrap}
+.scorer-foot button{min-height:38px;font-size:12px}
+.refire-details{background:#2b2522;border:1px solid #a17750;border-radius:9px;margin-top:10px;padding:10px}
+.refire-details summary{cursor:pointer;font-weight:750;color:#ffe0b5;min-height:28px}
+.refire-details summary span{float:right;font-weight:500;font-size:12px}
+.refire-details[open] summary{border-bottom:1px solid #7a5e47;padding-bottom:9px}
+@media(max-width:650px){.score-section,.scorer-card{padding:12px}.scorer-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.score-nav{gap:6px}.score-nav button{min-width:0;padding:7px 9px}.scorer-person strong{font-size:15px}.scorer-foot button{width:100%}}
+@media(max-width:340px){.scorer-fields{grid-template-columns:1fr}}
 </style>
 <style id="rangetrack-export-styles">
 #printReport{background:white;color:#161b20;padding:20px;font:12px Arial,sans-serif;overflow:auto}
@@ -191,7 +217,7 @@ function overallSummary(p){
  const status=overallStatus(p);
  return `<section class="panel" id="overallSummary"><h2>Overall Course Summary</h2><div class="row between"><strong>Total Hits on Paper (All Tables)</strong><strong style="font-size:24px" data-course-paper="initial">${initial===''?'—':initial}</strong></div><div class="row between" style="margin-top:12px"><strong>Overall Status</strong><strong style="font-size:24px" data-course-status>${status}</strong></div><p class="muted">Each failed Table uses its completed refire score in place of its initial score for final status and total hits. Incomplete refires retain the initial failed result.</p></section>`;
 }
-function setAreaScore(id,attempt,tableId,areaId,value){const p=current().shooters.find(x=>x.id===id);if(!p)return;const dest=attempt==='initial'?p.initialScores:p.refireScores;if(!dest[tableId])dest[tableId]={};dest[tableId][areaId]=value===''?'':n(value);save();refreshLive()}
+function setAreaScore(id,attempt,tableId,areaId,value){const p=current().shooters.find(x=>x.id===id);if(!p)return;const dest=attempt==='initial'?p.initialScores:p.refireScores;if(!dest[tableId])dest[tableId]={};dest[tableId][areaId]=value===''?'':n(value);save();if(db.view==='score')refreshScoringTable();else refreshLive()}
 function setTimeResult(id,attempt,tableId,value){const p=current().shooters.find(x=>x.id===id);if(!p)return;const key=attempt==='initial'?'initialTimes':'refireTimes';if(!p[key])p[key]={};p[key][tableId]=value;save();refreshLive()}
 
 const makeShooter=(name,lane,rounds,buttNumber="")=>({buttNumber,id:'s'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),name,lane,initial:rounds,extra:0,initialScores:{},refireScores:{},initialTimes:{},refireTimes:{},refire:false,remedialInitiated:false});
@@ -360,28 +386,90 @@ function completeCourse(){
 function resume(key){const i=key.indexOf('|');db.weapon=key.slice(0,i);db.course=key.slice(i+1);openCourse()}
 function roster(){const s=current();return `<section class="panel"><div class="row between"><h2>${safe(db.weapon)} • ${safe(current()?.template?.name||selectedCourse()?.name||db.course)}</h2><span class="tag">Scoring V23</span></div><div class="grid"><label>Class date<input type="date" value="${safe(s.date)}" onchange="updateSession('date',this.value)"></label><label>Default initial rounds<input type="number" min="0" value="${s.defaultRounds}" onchange="updateSession('defaultRounds',this.value)"></label></div><p><button onclick="applyRounds()">Apply rounds to all</button></p><div class="notice">Course names and ammunition defaults may be placeholders. Table status reflects configured minimums only; verify official qualification and refire rules.</div></section><section class="panel"><h2>Class shooters (${s.shooters.length})</h2>${s.shooters.map(p=>`<div class="entry row between"><div><strong>${safe(p.name)}</strong><div class="muted">Lane ${safe(p.lane||'Unassigned')} • Butt # ${safe(p.buttNumber||'—')} • ${progress(p)}/${tableList().length} Tables completed • ${total(p)} rounds</div></div><div class="row"><button class="primary" onclick="openShooter('${p.id}')">Score</button><button onclick="removeShooter('${p.id}')" aria-label="Remove shooter">×</button></div></div>`).join('')||'<p class="muted">No shooters yet. Add a fictional shooter below.</p>'}<h3 style="margin-top:17px">Add shooter</h3><div class="grid"><label>Name<input id="newName" placeholder="Fictional name"></label><label>Lane<input id="newLane" type="number" min="1" placeholder="Lane number"></label><label>Weapon Butt # (optional)<input id="newButtNumber" type="text" placeholder="e.g., 12" autocomplete="off"></label></div><p><button class="primary" onclick="addShooter()">Add shooter</button></p></section>`}
 function phaseCell(p,attempt,phase){const obj=(attempt==='initial'?p.initialScores:p.refireScores)[phase]||blank();return `<td>${['head','body','exterior'].map(k=>`<label class="cellfield"><span>${k==='exterior'?'Exterior':k==='head'?'Head':'Body'}</span><input type="number" min="0" inputmode="numeric" placeholder="—" value="${safe(obj[k])}" oninput="setScore('${p.id}','${attempt}','${phase}','${k}',this.value)"></label>`).join('')}<div class="overall"><strong>Overall</strong><strong id="sum-${attempt}-${phase.replace(' ','')}">${sumPhase(obj)}</strong></div></td>`}
+
+let scoreTableIndex=0;
+function changeScoringTable(delta){
+  const tables=tableList();
+  if(!tables.length)return;
+  scoreTableIndex=Math.max(0,Math.min(tables.length-1,scoreTableIndex+delta));
+  render();
+  document.getElementById('app')?.scrollIntoView({block:'start'});
+}
+function initiateRemedialRow(id){
+  const p=current()?.shooters.find(x=>x.id===id);
+  if(!p)return;
+  if(tableList().some(t=>tableStatus(p,'initial',t)==='Incomplete')){
+    alert('Enter all initial Firing Table scores for this shooter before initiating remedial.');
+    return;
+  }
+  const failed=tableList().filter(t=>tableStatus(p,'initial',t)==='Fail');
+  if(!failed.length){alert('No failed Firing Tables require remedial scoring.');return;}
+  p.remedialInitiated=true;
+  save();
+  render();
+}
+function refreshScoringTable(){
+  const t=tableList()[scoreTableIndex];
+  if(!t||db.view!=='score')return;
+  const shooters=current()?.shooters||[];
+  for(const row of document.querySelectorAll('.scorer-card[data-shooter-id]')){
+    const p=shooters.find(x=>x.id===row.dataset.shooterId);
+    if(!p)continue;
+    const setText=(selector,value)=>{const e=row.querySelector(selector);if(e)e.textContent=value;};
+    for(const attempt of ['initial','refire']){
+      const record=attemptRecord(p,attempt,t);
+      for(const a of t.areas){
+        const e=[...row.querySelectorAll('[data-score-calc]')].find(el=>el.dataset.scoreCalc===attempt+'|'+a.id);
+        if(e){const value=areaValue(record,t,a);e.textContent=value===''?'—':value;}
+      }
+      const totals=scoreTotals(record,t);
+      const status=tableStatus(p,attempt,t);
+      setText('[data-'+attempt+'-status]',status);
+      setText('[data-'+attempt+'-hits]',totals.qualifying===''?'—':totals.qualifying);
+    }
+    const initial=tableStatus(p,'initial',t);
+    const overall=overallStatus(p);
+    const value=effectivePaperTotal(p);
+    setText('[data-effective-status]',effectiveTableStatus(p,t));
+    setText('[data-overall-status]',overall);
+    setText('[data-overall-score]',value===''?'—':value);
+    const btn=row.querySelector('[data-initiate-remedial]');
+    if(btn&&!remedialActive(p)){
+      const eligible=tableList().some(table=>tableStatus(p,'initial',table)==='Fail');
+      btn.disabled=!eligible;
+      btn.title=eligible?'Start remedial scoring after initial tables are complete':'No failed initial tables';
+    }
+    const statusEl=row.querySelector('[data-initial-status]');
+    if(statusEl)statusEl.className='scorer-status '+(initial==='Fail'?'status-fail':initial==='Incomplete'?'status-pending':'status-pass');
+  }
+}
+
 function score(){
- const p=shooter();if(!p)return `<section class="panel"><h2>No shooters</h2><p>Add a shooter first.</p><button onclick="tab('roster')">Go to shooters</button></section>`;
- return `<section class="panel"><div class="row between"><h2>${safe(p.name)}</h2><span class="tag">${safe(db.weapon)} • ${safe(current()?.template?.name||db.course)}</span></div>
- <div class="grid"><label>Weapon Butt #<input type="text" value="${safe(p.buttNumber||'')}" placeholder="Optional" onchange="editShooter('${p.id}','buttNumber',this.value)"></label><label>Lane<input type="number" min="1" value="${safe(p.lane)}" onchange="editShooter('${p.id}','lane',this.value)"></label>
- <label>Initial rounds<input type="number" min="0" value="${safe(p.initial)}" oninput="editShooter('${p.id}','initial',this.value)"></label>
- <label>Additional rounds<input type="number" min="0" value="${safe(p.extra)}" oninput="editShooter('${p.id}','extra',this.value)"></label></div>
- <p><strong id="roundTotal">Total ammunition: ${total(p)} rounds</strong></p></section>
- ${tableList().map(t=>`<section class="panel"><h2>Firing Table: ${safe(t.name)}</h2><p class="muted">${t.rounds===''?'Rounds not configured':safe(t.rounds)+' rounds'} • Scored once after completing this Table</p>
- <div class="scroll"><table class="scoretable dynamic"><thead><tr><th>Attempt</th>
- ${t.areas.map(a=>`<th>${safe(a.name)}${a.qual!==''?`<small>Qual ≥${safe(a.qual)}</small>`:''}${a.expert!==''?`<small>Expert ≥${safe(a.expert)}</small>`:''}</th>`).join('')}<th>Status</th></tr></thead><tbody>
- ${['initial',...(refireEligible(p,t)?['refire']:[])].map(at=>`<tr><td>${at==='initial'?'Initial':'Refire'}</td>
- ${t.areas.map(a=>`<td>${a.mode==='sum'?`<strong class="calculated" data-calc="${at}-${t.id}-${a.id}">${areaValue(attemptRecord(p,at,t),t,a)===''?'—':areaValue(attemptRecord(p,at,t),t,a)}</strong>`:
- `<input type="number" min="0" inputmode="numeric" placeholder="—" value="${safe(attemptRecord(p,at,t)[a.id]??'')}" oninput="setAreaScore('${p.id}','${at}','${t.id}','${a.id}',this.value)">`}</td>`).join('')}
- <td><strong data-status="${at}-${t.id}">${tableStatus(p,at,t)}</strong></td></tr>`).join('')}</tbody></table></div>
- ${['initial',...(refireEligible(p,t)?['refire']:[])].map(at=>{const v=scoreTotals(attemptRecord(p,at,t),t);return `<div class="row between" style="margin-top:8px"><span>${at==='initial'?'Initial':'Refire'}</span><span>Qualifying Hits: <strong data-qual-total="${at}-${t.id}">${v.qualifying===''?'—':v.qualifying}</strong> | Total Hits on Paper: <strong data-paper-total="${at}-${t.id}">${v.paper===''?'—':v.paper}</strong> | Expert: <strong data-expert="${at}-${t.id}">${evaluateExpert(p,at,t)?'Expert':'—'}</strong></span></div>`}).join('')}
- </section>`).join('')}
- ${overallSummary(p)}
- <section class="panel" id="remedialPanel"><h2>Remedial Scoring</h2>
- <p class="muted">Enter and review initial scores first. Remedial rows are displayed for failed Firing Tables only after selecting Initiate Remedial. A completed refire replaces the failed Table's initial result in the overall evaluation.</p>
- ${remedialActive(p)?`<div class="notice">Remedial initiated. ${tableList().filter(t=>refireEligible(p,t)).length} failed Firing Table(s) currently require remedial scoring.</div>`:`<button class="primary" onclick="initiateRemedial()">Initiate Remedial</button>`}
- <div id="scoreProgress" class="muted">${progress(p)}/${tableList().length} Tables completed</div></section>
- <section class="panel row between"><button onclick="next(-1)">← Previous</button><button class="primary" onclick="next(1)">Next shooter →</button></section>`;
+ const session=current(),tables=tableList();
+ if(!session)return `<section class="panel">No active course.</section>`;
+ if(!session.shooters.length)return `<section class="panel"><h2>No shooters</h2><p>Add shooters to begin scoring.</p><button class="primary" onclick="tab('roster')">Go to Shooters</button></section>`;
+ if(!tables.length)return `<section class="panel">No Firing Tables configured.</section>`;
+ scoreTableIndex=Math.max(0,Math.min(tables.length-1,scoreTableIndex));
+ const t=tables[scoreTableIndex];
+ const sorted=[...session.shooters].sort((a,b)=>(Number(a.lane)||999)-(Number(b.lane)||999)||String(a.name).localeCompare(String(b.name)));
+ const nav=()=>`<div class="score-nav"><button type="button" onclick="changeScoringTable(-1)" ${scoreTableIndex===0?'disabled':''}>← Previous</button><span>Table ${scoreTableIndex+1} of ${tables.length}</span><button type="button" class="primary" onclick="changeScoringTable(1)" ${scoreTableIndex===tables.length-1?'disabled':''}>Next →</button></div>`;
+ const cells=(p,attempt)=>t.areas.map(a=>{
+   const rec=attemptRecord(p,attempt,t);
+   const v=areaValue(rec,t,a);
+   return `<label class="scorer-field"><span>${safe(a.name)}</span>${a.mode==='sum'?`<strong class="scorer-computed" data-score-calc="${safe(attempt+'|'+a.id)}">${v===''?'—':v}</strong>`:`<input aria-label="${safe(p.name+' '+a.name+' '+attempt)}" type="number" min="0" step="1" inputmode="numeric" placeholder="—" value="${safe(rec[a.id]??'')}" oninput="setAreaScore('${p.id}','${attempt}','${t.id}','${a.id}',this.value)">`}</label>`;
+ }).join('');
+ const row=p=>{
+   const failed=tables.some(x=>tableStatus(p,'initial',x)==='Fail');
+   const active=remedialActive(p);
+   const eligible=refireEligible(p,t);
+   const initialStatus=tableStatus(p,'initial',t);
+   const initialHits=scoreTotals(attemptRecord(p,'initial',t),t).qualifying;
+   const retryHits=scoreTotals(attemptRecord(p,'refire',t),t).qualifying;
+   const overallScore=effectivePaperTotal(p);
+   const attempt=eligible?`<details class="refire-details"><summary>Re-Fire <span>${safe(tableStatus(p,'refire',t))}</span></summary><div class="scorer-fields">${cells(p,'refire')}</div><div class="scorer-metrics"><span>Qualifying hits: <strong data-refire-hits>${retryHits===''?'—':retryHits}</strong></span><span>Result: <strong data-refire-status>${safe(tableStatus(p,'refire',t))}</strong></span></div></details>`:'';
+   return `<article class="scorer-card" data-shooter-id="${safe(p.id)}"><div class="scorer-person"><div><strong>${safe(p.name)}</strong><div class="scorer-meta">Lane ${safe(p.lane||'—')} · Butt # ${safe(p.buttNumber||'—')} · Ammo ${total(p)}</div></div><span class="scorer-status ${initialStatus==='Fail'?'status-fail':initialStatus==='Incomplete'?'status-pending':'status-pass'}" data-initial-status>${safe(initialStatus)}</span></div><div class="scorer-fields">${cells(p,'initial')}</div><div class="scorer-metrics"><span>Qualifying hits: <strong data-initial-hits>${initialHits===''?'—':initialHits}</strong></span><span>Table result: <strong data-effective-status>${safe(effectiveTableStatus(p,t))}</strong></span></div>${attempt}<div class="scorer-foot"><span>Course: <strong data-overall-status>${safe(overallStatus(p))}</strong> · Score <strong data-overall-score>${overallScore===''?'—':overallScore}</strong></span>${active?'':`<button type="button" data-initiate-remedial onclick="initiateRemedialRow('${p.id}')" ${failed?'':'disabled'}>Initiate Remedial</button>`}</div></article>`;
+ };
+ return `<section class="panel score-section"><div class="row between"><div><h2>Score</h2><p class="muted">${safe(db.weapon)} · ${safe(session.template?.name||db.course)} · ${safe(session.date)} · ${sorted.length} shooters</p></div><span class="tag">Scoring V24</span></div><label class="score-table-choose">Firing Table<select onchange="scoreTableIndex=Number(this.value);render()">${tables.map((x,i)=>`<option value="${i}" ${i===scoreTableIndex?'selected':''}>${safe(x.name)}</option>`).join('')}</select></label><p class="muted">${safe(t.rounds===''?'Rounds not configured':String(t.rounds)+' rounds')} · Scores save automatically</p>${nav()}</section><section class="score-roster">${sorted.map(row).join('')}</section><section class="panel">${nav()}<p class="muted">Remedial is initiated manually after initial scoring. Expand Re-Fire only for applicable failed Firing Tables. Original scores are retained.</p></section>`;
 }
 
 // Compact operational summary; detailed scoring remains in stored shooter records.
