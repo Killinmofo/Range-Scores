@@ -660,7 +660,14 @@ function refreshScoringTable(){
     }
     const statusEl=row.querySelector('[data-initial-status]');
     if(statusEl)statusEl.className='scorer-status '+(initial==='Fail'?'status-fail':initial==='Incomplete'?'status-pending':'status-pass');
+    const refireDisplay=row.querySelector('[data-refire-display]');
+    if(refireDisplay)refireDisplay.textContent=tableStatus(p,'refire',t);
   }
+  const complete=shooters.filter(p=>tableStatus(p,'initial',t)!=='Incomplete').length;
+  const passing=shooters.filter(p=>['Qualified','Expert'].includes(effectiveTableStatus(p,t))).length;
+  const done=document.querySelector('[data-class-completed]'),passed=document.querySelector('[data-class-passed]');
+  if(done)done.textContent=complete;
+  if(passed)passed.textContent=passing;
 }
 
 const refireOpenIds=new Set();
@@ -697,7 +704,7 @@ function score(){
   const failAny=tables.some(x=>tableStatus(p,'initial',x)==='Fail');
   const refireTotal=scoreTotals(attemptRecord(p,'refire',t),t).qualifying;
   const rowMarkup=`<div class="score-grid-row" style="${columnWidth}" role="row">
-    <div class="grid-shooter" role="cell"><strong>${safe(p.name)}</strong><small>${safe(p.id.slice(-4).toUpperCase())}</small></div>
+    <div class="grid-shooter" role="cell"><strong>${safe(p.name)}</strong><small>Ammo: ${total(p)}</small></div>
     <div class="grid-cell grid-metadata" role="cell">${safe(p.lane||'—')}</div>
     <div class="grid-cell grid-metadata" role="cell">${safe(p.buttNumber||'—')}</div>
     ${t.areas.map(a=>`<div class="grid-cell grid-input-cell" role="cell">${input(p,'initial',a)}</div>`).join('')}
