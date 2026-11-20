@@ -36,6 +36,78 @@ button{background:#344538;color:#f0f5ea;border:1px solid #657d58;border-radius:1
 .refire-details[open] summary{border-bottom:1px solid #7a5e47;padding-bottom:9px}
 @media(max-width:650px){.score-section,.scorer-card{padding:12px}.scorer-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.score-nav{gap:6px}.score-nav button{min-width:0;padding:7px 9px}.scorer-person strong{font-size:15px}.scorer-foot button{width:100%}}
 @media(max-width:340px){.scorer-fields{grid-template-columns:1fr}}
+
+/* RangeTrack V24 visual refresh: dark tactical UI, no data model changes. */
+:root{--accent:#b0c86d;--accent-bright:#c3db85;--line:#3f4c42;--panel:#171d1a;--muted:#aeb8af;scrollbar-color:#53644b #121916}
+body{background:#0d1310;background-image:linear-gradient(165deg,#131c16 0%,#0d1310 44%,#101811 100%);color:#e9efe8;letter-spacing:.01em}
+.brand-header{background:#111914;border-bottom:1px solid #354839;padding:21px 16px 17px;box-shadow:0 4px 16px #0005}
+.brand-inner{justify-content:flex-start;max-width:1080px}
+.brand-text h1{font-style:normal;font-weight:850;font-size:clamp(27px,6vw,37px);letter-spacing:-1.2px;margin:0 0 4px}
+.brand-text h1 span{color:#b8d27c}.brand-sub{font-size:11px;letter-spacing:1.5px;color:#b6c2b6}
+main{max-width:1080px;padding:20px 15px 30px}
+h2{font-size:19px;letter-spacing:-.2px}h3{color:#dbe6d7}
+.panel{background:#1a221d;border:1px solid #34463a;border-radius:12px;box-shadow:0 4px 14px #0003;padding:18px;margin-bottom:15px}
+.panel h2{margin-bottom:12px}.muted,.footer,.scoretable .cellfield span,.dynamic th small{color:#aab9a7}
+button{border-radius:8px;background:#2b382e;border:1px solid #51634c;color:#e8f0e4;min-height:42px;padding:10px 14px;font-weight:700;transition:background .12s,border-color .12s}
+button:hover:not(:disabled){background:#3a4c3a;border-color:#9db36d}
+button.primary,button.active{background:#a5c275;border:1px solid #bad68b;color:#172213}
+button.primary:hover:not(:disabled),button.active:hover:not(:disabled){background:#bfd991}
+button:disabled{opacity:.44}
+button.danger{background:#71353a;border-color:#a15e63;color:#fff}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #cee69e;outline-offset:2px}
+input,select,textarea{background:#101713!important;border:1px solid #55675a!important;color:#ecf3e9!important;border-radius:8px;min-height:44px;padding:10px;font-size:15px}
+input:focus,select:focus{border-color:#a8c873!important}
+input::placeholder{color:#839187}
+input[type=number]{font-variant-numeric:tabular-nums}
+.tabs{position:relative;gap:8px;margin-bottom:18px;padding:5px;background:#17211a;border:1px solid #35463a;border-radius:11px}
+.tabs button{background:transparent;border:1px solid transparent;border-radius:7px;min-height:44px;color:#c6d0c3}
+.tabs button.active{background:#aec978;color:#162313;border-color:#aec978;color:#172213;box-shadow:0 2px 6px #0003}
+.entry,.areaedit{background:#141d17;border:1px solid #38483c;border-radius:10px;padding:13px}
+.entry strong{color:#f6faf4}.tag{background:#29392d;border:1px solid #536a50;border-radius:7px;color:#cce9ab;padding:6px 10px;font-weight:700}
+.notice{background:#382f20;border:1px solid #806c3f;color:#f2dfb4;border-radius:9px}
+.dangerarea{border-color:#85565a}
+.dashboard-title{font-size:25px;font-weight:800;color:#f1f6ed;margin:3px 0 19px}
+.dashboard-card{background:#1a251d;border:1px solid #536d46;border-radius:12px;min-height:90px;padding:17px 16px;box-shadow:0 3px 12px #0003}
+.dashboard-card:hover{background:#243326;border-color:#b0cc78}
+.dashboard-card .dash-icon{border-right-color:#607d58;color:#bdd98a}
+.dashboard-card .dash-copy strong{font-size:17px}.dashboard-card .dash-copy small{color:#b7c7b4}
+.dashboard-selection{border-left-color:#b0cc78}
+.weapons button,.courses button{background:#26342a;border-color:#51694d;min-height:54px}
+.weapons button.selected,.courses button.selected{background:#a4c376;color:#172213}
+.score-section{border-color:#4e654a;background:#1b261e}
+.score-section h2{font-size:23px;margin-bottom:3px}
+.score-section .score-table-choose{max-width:100%;margin:15px 0 12px}
+.score-table-choose select{font-size:16px;font-weight:700;padding:12px}
+.score-nav{padding:8px 0;margin:5px 0;gap:12px}
+.score-nav span{font-size:13px;color:#d4e2ca;white-space:nowrap}
+.score-roster{gap:10px}
+.scorer-card{background:#1b241d;border:1px solid #415645;border-radius:12px;padding:16px;box-shadow:0 2px 10px #0004}
+.scorer-person{padding-bottom:12px;border-bottom:1px solid #38483a;align-items:flex-start}
+.scorer-person strong{font-size:17px;letter-spacing:.05em;color:#f4f7f1}
+.scorer-meta{color:#aebdae;font-size:12px;line-height:1.65;margin-top:5px}
+.scorer-status{border-radius:6px;font-size:11px;padding:7px 10px;letter-spacing:.06em}
+.status-pass{background:#203c29;color:#b5e6ad;border:1px solid #4f865c}
+.status-fail{background:#49262a;color:#ffd1d1;border:1px solid #a3555a}
+.status-pending{background:#40391f;color:#ffe6a0;border:1px solid #76632c}
+.scorer-fields{gap:12px;margin-top:14px}
+.scorer-field{font-size:12px;color:#d0dccd;font-weight:650;gap:7px}
+.scorer-field input{border:1px solid #62745d!important;background:#101914!important;text-align:center;min-height:52px;font-size:22px;font-weight:750;border-radius:8px}
+.scorer-field input:focus{border-color:#bed48d!important}
+.scorer-computed{background:#243327;border:1px solid #61795c;color:#f5f9f1;min-height:52px;justify-content:center;font-size:22px}
+.scorer-metrics{font-size:13px;color:#afbea9;margin:13px 0}
+.scorer-metrics strong{font-size:14px;color:#f5f7f3}
+.scorer-foot{border-top-color:#415344;padding-top:12px}
+.scorer-foot button{font-size:12px}
+.refire-details{background:#29251e;border:1px solid #896f46;border-radius:9px;margin-top:13px;padding:13px}
+.refire-details summary{color:#f1d99b;min-height:30px}
+.refire-details[open] summary{border-bottom-color:#6f6042}
+.scoretable th{background:#344534;color:#dfead6}
+.scoretable td{background:#17211a;border-color:#495a49}
+.footer{border-top:1px solid #2e3a31;margin-top:18px;line-height:1.6}
+@media(min-width:760px){.score-roster{grid-template-columns:repeat(2,minmax(0,1fr))}.scorer-card{min-width:0}.dashboard-card{min-height:98px}}
+@media(max-width:650px){main{padding:12px 10px 26px}.brand-header{padding:16px 13px 13px}.panel{padding:14px}.tabs{gap:2px;padding:4px}.tabs button{font-size:12px;padding:8px 4px}.scorer-card{padding:13px}.scorer-fields{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.scorer-field input{font-size:21px;min-height:54px}.scorer-person strong{font-size:16px}.score-nav button{font-size:12px}.score-nav span{font-size:12px}}
+@media print{.report-preview,.report-heading,.report-table,.report-note,#printReport{color:#171d1b!important}#printReport{background:#fff!important}.report-table th{background:#292d2a!important;color:white!important}.report-table td{background:white!important;color:#1d251f!important}body{background:#fff!important}}
+
 </style>
 <style id="rangetrack-export-styles">
 #printReport{background:white;color:#161b20;padding:20px;font:12px Arial,sans-serif;overflow:auto}
