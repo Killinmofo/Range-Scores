@@ -19,7 +19,7 @@ button{background:#344538;color:#f0f5ea;border:1px solid #657d58;border-radius:1
 #printReport .export-table th{background:#e8ebed;font-weight:bold}
 #printReport .export-person{break-inside:avoid;page-break-inside:avoid;margin-top:18px}
 #printReport .export-footer{font-size:9px;margin-top:20px}
-@media print{body{background:white!important;color:black!important}body>*:not(#app){display:none!important}#app{display:block!important;background:white!important;padding:0!important;margin:0!important;max-width:none!important}.export-controls{display:none!important}#printReport{padding:0!important;overflow:visible!important}#printReport .export-table{font-size:9px} @page{size:landscape;margin:10mm}}
+@media print{body{background:white!important;color:black!important}body>header{display:none!important}body>main{display:block!important;background:white!important;padding:0!important;margin:0!important;max-width:none!important}main>#nav,main>.footer{display:none!important}#app{display:block!important;background:white!important;padding:0!important;margin:0!important;max-width:none!important}.export-controls{display:none!important}#printReport{padding:0!important;overflow:visible!important}#printReport .export-table{font-size:9px} @page{size:landscape;margin:10mm}}
 
 /* V23 compact class summary: native table on desktop and printable landscape; cards on phone. */
 .report-preview{background:#fff;color:#171d1b;border-radius:9px;padding:12px;overflow:hidden}
